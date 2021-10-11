@@ -1,4 +1,5 @@
 class CountriesController < ApplicationController
+  before_action :check_login, except: :show
   before_action :set_country, only: %i[ show edit update destroy ]
 
   # GET /countries or /countries.json
@@ -66,5 +67,14 @@ class CountriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def country_params
       params.fetch(:country, {})
+    end
+
+    def check_login
+      debugger
+      unless !!session[:user_id]
+        respond_to do |format|
+          format.html { redirect_to login_path, notice: "Only registered can access this page" }
+        end
+      end
     end
 end

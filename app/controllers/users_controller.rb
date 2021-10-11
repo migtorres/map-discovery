@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_admin
   before_action :set_user, only: %i[ edit update destroy ]
   def index
     @users = User.all.order(:username)
@@ -27,10 +28,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_url, notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -39,7 +38,6 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
@@ -51,5 +49,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password, :is_admin)
+  end
+
+  def check_admin
+    unless !!session[:user_id] && User_find(session[:user_id]).is_admin
+      respond_to do |fmt|
+        fmt.html { redirect_to '/', notice: "Only admins can access this page" }
+      end
+    end
   end
 end
