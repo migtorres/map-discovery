@@ -1,24 +1,28 @@
-# README
+# Map Discovery
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An app to get point information for a geojson dataset store in the database
 
-Things you may want to cover:
+# Dependencies
 
-* Ruby version
+Map Discovery is a Ruby on Rails app that uses Leaflet to draw a map
 
-* System dependencies
+# Data
 
-* Configuration
+Map Discovery includes a country dataset, for which it was created a model. There is no need of using Postgis as the geometries are stored as GeoJSON on the GeoJSON column.
+Raw data can be 
 
-* Database creation
+# Users
 
-* Database initialization
+There is a very sketchy user management system, with only admin and non-admin users.
 
-* How to run the test suite
+* Admin: Can Create, Delete and Edit users and all that other users can do
+* Registered user: Can create and edit countries. Can view also what the non logged user can see
+* Non logged user: Can only view the map and each country factsheet.
 
-* Services (job queues, cache servers, search engines, etc.)
+# Install
 
-* Deployment instructions
+You should have ruby 2.7.2 installed with bundler and then run:
 
-* ...
+`bundle install`
+
+
