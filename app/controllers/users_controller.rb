@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def check_admin
-    unless !!session[:user_id] && User_find(session[:user_id]).is_admin
+    unless !!session[:user_id] && User.find(session[:user_id]).is_admin
       respond_to do |fmt|
         fmt.html { redirect_to '/', notice: "Only admins can access this page" }
       end
