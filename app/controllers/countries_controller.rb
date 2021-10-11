@@ -70,7 +70,6 @@ class CountriesController < ApplicationController
     end
 
     def check_login
-      debugger
       unless !!session[:user_id]
         respond_to do |format|
           format.html { redirect_to login_path, notice: "Only registered can access this page" }
