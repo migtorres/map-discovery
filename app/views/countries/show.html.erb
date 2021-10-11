@@ -1,4 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_country_path(@country) %> |
-<%= link_to 'Back', countries_path %>
+<div class="container">
+  <div class="col-md-8">
+    <h3><%= @country.name %></h3>
+    <table class="table table-striped">
+      <thead  class="table-dark">
+        <tr>
+          <th>Attribute</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @country.attributes.keys.each do |attribute| %>
+          <tr>
+            <td><%= attribute.humanize %></td>
+            <td><%= @country.attributes[attribute].to_s %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to 'Edit', edit_country_path(@country) %> |
+    <%= link_to 'Back', countries_path %>
+  </div>
+</div>

@@ -3,7 +3,7 @@ class CountriesController < ApplicationController
 
   # GET /countries or /countries.json
   def index
-    @countries = Country.all
+    @countries = Country.all.order(:name)
     gon.countries_geo = @countries.feature_collection
   end
 

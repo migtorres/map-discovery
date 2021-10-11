@@ -1,0 +1,36 @@
+<%= form_with(model: user) do |form| %>
+  <div class="col-md-8">
+    <div class='mb3'>
+        <%= form.label :username, class:"form-label" %>
+      <div class='row'>
+        <div class='col'>
+          <%= form.text_field :username, class:"form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class='mb3'>
+        <%= form.label :password, class:"form-label" %>
+      <div class='row'>
+        <div class='col'>
+          <%= form.password_field :password, class:"form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class='mb3'>
+        <%= form.label :is_admin, class:"form-label" %>
+      <div class='row'>
+        <div class='col'>
+          <%= form.check_box :is_admin  %>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb3">
+      <div class="actions">
+        <%= form.submit 'Sumbit', class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
