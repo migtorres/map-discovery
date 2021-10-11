@@ -66,7 +66,7 @@ class CountriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def country_params
-      params.fetch(:country, {})
+      params.require(:country).permit(:name, :iso_a3, :geojson)
     end
 
     def check_login
